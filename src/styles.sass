@@ -1,1 +1,36 @@
-/* You can add global styles to this file, and also import other style files */
+@import "sass/base"
+@import "sass/container"
+@import "sass/position"
+@import "sass/sizing"
+@import "sass/spacing"
+@import "sass/text"
+
+router-outlet + *
+    @extend .fluid
+    @extend .col
+    @extend .center
+
+input
+    @extend .mx-s
+    @extend .my-m
+    @extend .p-s
+
+input[type=text], input[type=password]
+    border: 1px solid grey
+    border-radius: 0.25em
+
+    &:focus
+        border: 1px solid dodgerblue
+        box-shadow: 0 0 0.25em dodgerblue
+
+button
+    @extend .p-s
+    border: 1px solid grey
+    border-radius: 0.25em
+
+hr
+    @extend .w-100
+    @extend .my-s
+    @extend .mx-none
+    height: 1px
+    background-color: gray

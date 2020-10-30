@@ -1,0 +1,31 @@
+*
+  @extend .sans
+  @extend .black
+  box-sizing: border-box
+  transition: 0.35s
+  outline: none
+  border: none
+  position: relative
+  animation: fade-in 0.3s ease
+
+@keyframes fade-in
+  from
+    opacity: 0
+  to
+    opacity: 1
+
+html
+  scroll-behavior: smooth
+
+html, body
+  min-height: 100%
+  width: 100%
+  padding: 0
+  margin: 0
+  background-color: #EEEEEE
+
+.monospace, .monospace > *
+  font-family: 'Roboto Mono', monospace
+
+.sans, .sans > *
+  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Arial', sans-serif

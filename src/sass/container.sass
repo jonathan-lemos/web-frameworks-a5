@@ -1,0 +1,46 @@
+=flex-props
+  display: flex
+
+  &.nowrap
+    flex-wrap: nowrap
+
+  &.center
+    justify-content: center
+
+  &.space-evenly
+    justify-content: space-evenly
+
+  &.space-between
+    justify-content: space-between
+
+  &.align-stretch
+    align-items: stretch
+
+  &.grow-children > *
+    flex-grow: 1
+
+  & > .self-start
+    align-self: start
+
+.row
+  +flex-props
+
+  flex-direction: row
+  flex-wrap: wrap
+  align-items: center
+
+  &.reverse
+    flex-direction: row-reverse
+
+.col
+  +flex-props
+
+  flex-direction: column
+  flex-wrap: wrap
+  align-items: center
+
+  &.reverse
+    flex-direction: column-reverse
+
+.row > .grow, .col > .grow
+  flex-grow: 1

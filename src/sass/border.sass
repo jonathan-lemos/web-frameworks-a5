@@ -1,0 +1,23 @@
+.border-bottom
+    border-bottom: 1px solid black
+
+.border-top
+    border-top: 1px solid black
+
+.border-left
+    border-left: 1px solid black
+
+.border-right
+    border-right: 1px solid black
+
+.border-y
+    @extend .border-bottom
+    @extend .border-top
+
+.border-x
+    @extend .border-left
+    @extend .border-right
+
+.border
+    @extend .border-y
+    @extend .border-x

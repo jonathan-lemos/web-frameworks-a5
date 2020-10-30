@@ -1,0 +1,9 @@
+<nav class="w-100 col nowrap mb-m">
+    <div class="spacer"></div>
+    <div class="w-100 row nowrap px-m align-center">
+        <a href="#" class="title">Sweet Login Page</a>
+        <app-link *ngFor="let link of links" [href]="link.path" [title]="link.name" [active]="this.router.url.endsWith(link.path)"></app-link>
+        <div class="grow"></div>
+    </div>
+    <div class="spacer"></div>
+</nav>

@@ -1,0 +1,9 @@
+<div class="w-50 h-100 col nowrap center">
+    <h2 class="p-none m-xs mt-s">Log in</h2>
+    <h4 class="p-s m-s mb-l">Or <a [routerLink]="['/create-account']">create an account.</a></h4>
+    <label class="self-start bold mr-s" for="username">Username</label>
+    <input class="w-100" type="text" name="username" [(ngModel)]="this.username">
+    <label class="self-start bold mr-s" for="password">Password</label>
+    <input class="w-100" type="password" name="password" [(ngModel)]="this.password">
+    <button class="w-100 my-m" (click)="this.onClickSubmit()">Submit</button>
+</div>

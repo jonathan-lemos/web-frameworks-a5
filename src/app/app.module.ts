@@ -3,14 +3,26 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { LoginComponent } from './login/login.component';
+import { AuthenticatedComponent } from './authenticated/authenticated.component';
+import { NewuserComponent } from './newuser/newuser.component';
+import { FormsModule } from '@angular/forms';
+import { LinkComponent } from './navbar/link/link.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavbarComponent,
+    LoginComponent,
+    AuthenticatedComponent,
+    NewuserComponent,
+    LinkComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
