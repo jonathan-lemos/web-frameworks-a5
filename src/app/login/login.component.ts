@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,13 +11,21 @@ export class LoginComponent implements OnInit {
   username: string = ""
   password: string = ""
 
-  constructor() { }
+  error: string = "";
+
+  constructor(private auth: AuthService, private router: Router, private av: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.username = this.av.snapshot.queryParamMap.get("username") ?? "";
   }
 
-  onClickSubmit(): void {
-
+  async onClickSubmit(): Promise<void> {
+    const res = await this.auth.authenticate(this.username, this.password);
+    if (res.isSuccess()) {
+      this.router.navigate(["authenticated"]);
+    }
+    else {
+      this.error = res.toString();
+    }
   }
-
 }

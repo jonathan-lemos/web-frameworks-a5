@@ -1,1 +1,29 @@
-<p>authenticated works!</p>
+<div *ngIf="this.users && this.users.isSuccess(); then thenBlock else elseBlock"></div>
+<ng-template #thenBlock>
+    <table class="w-80 zebra">
+        <thead>
+            <tr>
+                <th>userId</th>
+                <th>firstName</th>
+                <th>lastName</th>
+                <th>emailAddress</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of this.users.value">
+                <td>{{user.userId}}</td>
+                <td>{{user.firstName}}</td>
+                <td>{{user.lastName}}</td>
+                <td>{{user.emailAddress}}</td>
+            </tr>
+        </tbody>
+    </table>
+</ng-template>
+<ng-template #elseBlock>
+    <pre class="w-50" *ngIf="this.users">
+        {{this.users.toString()}}
+    </pre>
+    <pre class="w-50" *ngIf="!this.users">
+        Waiting for API response...
+    </pre>
+</ng-template>

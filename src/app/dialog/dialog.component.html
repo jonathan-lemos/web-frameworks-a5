@@ -1,0 +1,11 @@
+<div class="dialog" [ngClass]="{'up': this.show && !this.hidden, 'down': !this.show && !this.hidden}">
+    <div class="title-bar">
+        <span *ngIf="this.title" class="title">{{this.title}}</span>
+        <div class="grow"></div>
+        <span class="close" (click)="this.close()">X</span>
+    </div>
+    <hr />
+    <div class="grow">
+        <ng-content></ng-content>
+    </div>
+</div>

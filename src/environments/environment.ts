@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  server: "localhost:3000"
+  // you must specify the schema since i ain't writing a regex for that
+  // server: "http://localhost:3000",
+  server: "https://unf.josecgomez.dev",
 };
 
 /*

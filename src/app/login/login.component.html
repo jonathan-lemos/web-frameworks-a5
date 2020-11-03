@@ -7,3 +7,6 @@
     <input class="w-100" type="password" name="password" [(ngModel)]="this.password">
     <button class="w-100 my-m" (click)="this.onClickSubmit()">Submit</button>
 </div>
+<app-dialog [show]="this.error.length > 0" (onClose)="this.error = ''" title="Could not log in">
+    <pre>{{this.error}}</pre>
+</app-dialog>

@@ -9,6 +9,7 @@ import { AuthenticatedComponent } from './authenticated/authenticated.component'
 import { NewuserComponent } from './newuser/newuser.component';
 import { FormsModule } from '@angular/forms';
 import { LinkComponent } from './navbar/link/link.component';
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { LinkComponent } from './navbar/link/link.component';
     LoginComponent,
     AuthenticatedComponent,
     NewuserComponent,
-    LinkComponent
+    LinkComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,

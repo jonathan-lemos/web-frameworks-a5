@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { createUser } from 'src/utilities/api';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-newuser',
@@ -14,19 +14,20 @@ export class NewuserComponent implements OnInit {
   emailAddress: string = "";
   password: string = "";
 
-  constructor(private router: Router) { }
+  error: string = "";
+
+  constructor(private api: ApiService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   async onClickSubmit(): Promise<void> {
-    const res = await createUser(this.username, this.firstName, this.lastName, this.emailAddress, this.password);
-    if (res.status === 201) {
-      this.router.navigate(["/Login"]);
+    const res = await this.api.createUser(this.username, this.firstName, this.lastName, this.emailAddress, this.password);
+    if (res.isSuccess()) {
+      this.router.navigate(["/login"], { queryParams: { username: res.value.userId } });
     }
     else {
-      console.log(res);
+      this.error = res.toString();
     }
   }
-
 }

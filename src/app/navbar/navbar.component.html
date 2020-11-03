@@ -4,6 +4,7 @@
         <a href="#" class="title">Sweet Login Page</a>
         <app-link *ngFor="let link of links" [href]="link.path" [title]="link.name" [active]="this.router.url.endsWith(link.path)"></app-link>
         <div class="grow"></div>
+        <app-link *ngIf="this.auth.isAuthenticated()" href="login" title="Logout" [active]="false" (click)="this.auth.logout()"></app-link>
     </div>
     <div class="spacer"></div>
 </nav>

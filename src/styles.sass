@@ -34,3 +34,41 @@ hr
     @extend .mx-none
     height: 1px
     background-color: gray
+
+pre
+    font-family: monospace
+    white-space: pre-wrap
+
+table
+    border-collapse: collapse
+
+    & tr, & tr *
+        padding: 0.5em
+        margin: 0
+        text-align: center
+
+
+    &.zebra
+        & > thead
+            & > tr
+                transform-origin: top center
+                background-color: #D0D0D080
+
+                &:hover
+                    background-color: #D0D0D0
+        & > tbody
+            & > tr
+                transform-origin: top center
+                animation: scaleY 0.7s ease forwards
+
+                &:nth-child(2n)
+                    background-color: #E0E0E080
+
+                    &:hover
+                        background-color: #E0E0E0
+                
+                &:nth-child(2n + 1)
+                    background-color: #F0F0F080
+
+                    &:hover
+                        background-color: #F0F0F0

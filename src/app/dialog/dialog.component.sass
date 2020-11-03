@@ -1,0 +1,55 @@
+@import "../../sass/container"
+@import "../../sass/sizing"
+@import "../../sass/spacing"
+    
+@keyframes dialogUp
+    from
+        transform: scaleY(0)
+        display: none
+    1%
+        display: reset
+    to
+        transform: scaleY(1)
+        display: reset
+
+@keyframes dialogDown
+    from
+        transform: scaleY(1)
+    to:
+        transform: scaleY(0)
+    
+    
+div.dialog
+    @extend .col
+    @extend .p-s
+    background-color: #ffffff
+    border: 1px solid black
+    border-radius: 0.25em
+    position: fixed
+    bottom: 0
+    left: 25%
+    right: 25%
+    transform-origin: bottom center
+    transform: scaleY(0)
+
+    & > div.title-bar
+        @extend .px-m
+        @extend .py-xs
+        @extend .w-100
+        @extend .row
+
+        & > .close
+            @extend .mx-s
+            font-weight: bold
+            user-select: none
+            cursor: pointer
+
+        & > .title
+            @extend .mx-s
+            font-weight: bold
+    
+    &.down
+        animation: dialogDown 0.5s ease forwards
+
+    &.up
+        animation: dialogUp 0.5s ease forwards
