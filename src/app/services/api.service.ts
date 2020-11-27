@@ -2,6 +2,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { Runtype } from 'runtypes';
 import { environment } from '../../environments/environment';
 import { Failure, Result, Success } from '../functional/result';
+import { Post } from './apiClasses/post';
 import { User } from './apiClasses/user';
 
 type ApiResponse = {type: "no response", reason: string} |
@@ -44,7 +45,7 @@ export class ApiService {
 
         const text = await res1.text();
         try {
-          const res2 = JSON.parse(text);
+          const res2 = text.trim() !== "" ? JSON.parse(text) : "";
           return {type: "json response", status: res1.status, response: res2};
         }
         catch (e) {
@@ -77,7 +78,7 @@ export class ApiService {
 
         const text = await res1.text();
         try {
-          const res2 = JSON.parse(text);
+          const res2 = text.trim() !== "" ? JSON.parse(text) : "";
           return {type: "json response", status: res1.status, response: res2};
         }
         catch (e) {
@@ -217,4 +218,75 @@ export class ApiService {
 
     return new Success(res.response.token as string);
   };
+
+  async getPosts(auth?: string): Promise<Result<Post[], string>> {
+    const res = await this.get(`/Posts`, auth);
+
+    if (!(res.type === "json response")) {
+      return new Failure(JSON.stringify({...res, error: "Expected a JSON response"}, null, 2));
+    }
+
+    if (Math.floor(res.status / 100) !== 2) {
+      return new Failure(JSON.stringify({...res, error: "Response status was not 2XX."}, null, 2));
+    }
+
+    if (!Array.isArray(res.response)) {
+      return new Failure(JSON.stringify({...res, error: "Response was not an array."}, null, 2));
+    }
+
+    const ret: Post[] = [];
+
+    for (const obj of res.response) {
+      try {
+        ret.push(Post.check(obj));
+      }
+      catch (e) {
+        return new Failure(JSON.stringify({...res, error: `One or more of the returned objects was not a Post: ${e.message ?? e}`, badObject: obj}, null, 2));
+      }
+    }
+
+    return new Success(res.response);
+  }
+
+  async addPost(title: string, content: string, headerImage: string, auth: string): Promise<Result<any, string>> {
+    const res = await this.post("/Posts", {title, content, headerImage}, auth);
+
+    if (!(res.type === "json response")) {
+      return new Failure(JSON.stringify({...res, error: "Expected a JSON response"}, null, 2));
+    }
+
+    if (Math.floor(res.status / 100) !== 2) {
+      return new Failure(JSON.stringify({...res, error: "Response status was not 2XX."}, null, 2));
+    }
+
+    return new Success(res.response);
+  }
+
+  async updatePost(postId: number, content: string, auth: string): Promise<Result<any, string>> {
+    const res = await this.patch(`/Posts/${postId}`, { content }, auth);
+
+    if (!(res.type === "json response")) {
+      return new Failure(JSON.stringify({...res, error: "Expected a JSON response"}, null, 2));
+    }
+
+    if (Math.floor(res.status / 100) !== 2) {
+      return new Failure(JSON.stringify({...res, error: "Response status was not 2XX."}, null, 2));
+    }
+
+    return new Success(res.response);
+  }
+
+  async deletePost(postId: number, auth: string): Promise<Result<any, string>> {
+    const res = await this.del(`/Posts/${postId}`, auth);
+
+    if (!(res.type === "json response")) {
+      return new Failure(JSON.stringify({...res, error: "Expected a JSON response"}, null, 2));
+    }
+
+    if (Math.floor(res.status / 100) !== 2) {
+      return new Failure(JSON.stringify({...res, error: "Response status was not 2XX."}, null, 2));
+    }
+
+    return new Success(res.response);
+  }
 }

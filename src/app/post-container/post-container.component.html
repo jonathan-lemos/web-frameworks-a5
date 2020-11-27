@@ -1,0 +1,17 @@
+<div class="w-80 col">
+    <div *ngIf="this.auth.isAuthenticated()" class="w-100 col">
+        <div class="w-100 row nowrap">
+            <input class="w-100 grow ml-none" placeholder="New post title" [(ngModel)]="this.newPostTitle">
+            <button class="green" (click)="this.addPost()">Submit</button>
+        </div>
+        <quill-editor class="w-100 mb-s" [(ngModel)]="this.newPostContent"></quill-editor>
+    </div>
+
+    <div *ngIf="this.posts !== undefined" class="w-100 col">
+        <app-post *ngFor="let post of this.posts" [post]="post" (onSubmitSuccess)="this.onUpdateSuccess()" (onSubmitError)="this.onUpdateError($event)"></app-post>
+    </div>
+</div>
+
+<app-dialog [show]="this.error.length > 0" (onClose)="this.error = ''" [title]="this.errorTitle">
+    <pre>{{this.error}}</pre>
+</app-dialog>

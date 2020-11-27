@@ -4,6 +4,9 @@
 @import "sass/sizing"
 @import "sass/spacing"
 @import "sass/text"
+@import '~quill/dist/quill.core.css'
+@import '~quill/dist/quill.bubble.css'
+@import '~quill/dist/quill.snow.css'
 
 router-outlet + *
     @extend .fluid
@@ -25,8 +28,15 @@ input[type=text], input[type=password]
 
 button
     @extend .p-s
-    border: 1px solid grey
-    border-radius: 0.25em
+    border: none
+    text-align: center
+    font-weight: bold
+
+    &:focus
+        outline: none
+
+    &:hover
+        cursor: pointer
 
 hr
     @extend .w-100

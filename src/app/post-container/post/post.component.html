@@ -1,0 +1,21 @@
+<div class="post">
+    <div class="title-bar">
+        <span class="author">{{this.post.userId}}</span>
+        <h2 class="title">{{this.post.title}}</h2>
+        <span class="date">{{this.formatDate(this.post.createdDate)}}</span>
+    </div>
+    <quill-view-html class="w-100" *ngIf="!this.editing" [content]="this.post.content"></quill-view-html>
+    <quill-editor class="w-100" *ngIf="this.editing" [(ngModel)]="this.editContent"></quill-editor>
+    <div *ngIf="!this.editing" class="footer">
+        <button *ngIf="this.post.userId == this.auth.username()" class="green mr-s" (click)="this.edit()">Edit</button>
+        <app-delete-button *ngIf="this.post.userId == this.auth.username()" (onClick)="this.delete()"></app-delete-button>
+        <div class="grow"></div>
+        <span class="footnote" *ngIf="this.post.lastUpdated > this.post.createdDate">Last updated: {{this.formatDate(this.post.lastUpdated)}}</span>
+    </div>
+    <div *ngIf="this.editing" class="footer">
+        <div class="grow"></div>
+        <button class="green mr-s" (click)="this.save()">Save</button>
+        <button class="red" (click)="this.cancel()">Cancel</button>
+        <div class="grow"></div>
+    </div>
+</div>

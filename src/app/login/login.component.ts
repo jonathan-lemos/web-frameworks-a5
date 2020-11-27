@@ -22,10 +22,16 @@ export class LoginComponent implements OnInit {
   async onClickSubmit(): Promise<void> {
     const res = await this.auth.authenticate(this.username, this.password);
     if (res.isSuccess()) {
-      this.router.navigate(["authenticated"]);
+      this.router.navigate(["posts"]);
     }
     else {
       this.error = res.toString();
+    }
+  }
+
+  async onKeyUp(e: any): Promise<void> {
+    if (e.key === "Enter") {
+      await this.onClickSubmit();
     }
   }
 }

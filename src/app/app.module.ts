@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { QuillModule } from 'ngx-quill';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +11,9 @@ import { NewuserComponent } from './newuser/newuser.component';
 import { FormsModule } from '@angular/forms';
 import { LinkComponent } from './navbar/link/link.component';
 import { DialogComponent } from './dialog/dialog.component';
+import { PostComponent } from './post-container/post/post.component';
+import { PostContainerComponent } from './post-container/post-container.component';
+import { DeleteButtonComponent } from './post-container/post/delete-button/delete-button.component';
 
 @NgModule({
   declarations: [
@@ -19,12 +23,16 @@ import { DialogComponent } from './dialog/dialog.component';
     AuthenticatedComponent,
     NewuserComponent,
     LinkComponent,
-    DialogComponent
+    DialogComponent,
+    PostComponent,
+    PostContainerComponent,
+    DeleteButtonComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    QuillModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

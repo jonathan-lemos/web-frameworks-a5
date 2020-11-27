@@ -1,0 +1,3 @@
+<button *ngIf="!this.confirm" class="red" (click)="this.onClickDelete()">Delete</button>
+<button *ngIf="this.confirm" class="mr-s" (click)="this.onClickCancel()">Cancel</button>
+<button *ngIf="this.confirm" class="red mr-s" (click)="this.onClickConfirm()">Confirm</button>

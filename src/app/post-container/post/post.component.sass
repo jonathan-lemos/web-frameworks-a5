@@ -1,0 +1,62 @@
+@import "../../../sass/container"
+@import "../../../sass/sizing"
+@import "../../../sass/spacing"
+
+:host
+    width: 100%
+    
+div.post
+    @extend .col
+    @extend .w-100
+    @extend .p-m
+    @extend .my-s
+
+    width: 100%
+    background-color: #FBFBFB80
+
+    &:hover
+        background-color: #FFFFFF
+
+    & > .title-bar
+        @extend .mb-s
+        @extend .row
+        @extend .nowrap
+        @extend .w-100
+
+        & > .author
+            @extend .w-100
+            flex-grow: 1
+            text-align: left
+
+        & > .title
+            white-space: nowrap
+            padding: 0
+            margin: 0
+
+        & > .date
+            @extend .w-100
+            flex-grow: 1
+            text-align: right
+
+    & > .footer
+        @extend .py-s
+        @extend .row
+        @extend .w-100
+        justify-content: end
+
+    & button.green
+        background-color: #33EE99
+
+        &:hover
+            background-color: #22DD88
+
+    & button.red
+        background-color: #FF6699
+            
+        &:hover
+            background-color: #EE5588
+
+span.footnote
+    font-style: italic
+    color: gray
+

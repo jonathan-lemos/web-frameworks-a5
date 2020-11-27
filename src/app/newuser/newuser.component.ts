@@ -30,4 +30,10 @@ export class NewuserComponent implements OnInit {
       this.error = res.toString();
     }
   }
+
+  async onKeyUp(e: any): Promise<void> {
+    if (e.key === "Enter") {
+      await this.onClickSubmit();
+    }
+  }
 }
